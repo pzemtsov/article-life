@@ -6,6 +6,14 @@ public class HashTime
             x.hashCode ();
     }
 
+    int sum (int N, Object x)
+    {
+        int s = 0;
+        for (int i = 0; i < N; i++)
+            s += x.hashCode ();
+        return s;
+    }
+ 
     void test (Object x)
     {
         System.out.printf ("%20s: ", x.getClass ().getName ());
@@ -14,12 +22,12 @@ public class HashTime
         
         for (int iter = 0; iter < 3; iter ++) {
             long t1 = System.currentTimeMillis ();
-            iterate (N, x);
+            s += sum (N, x);
             long t2 = System.currentTimeMillis ();
             long t = t2-t1;
             System.out.printf (" %5d", t);
         }
-        System.out.println ();
+        System.out.println ("; sum=" + s);
     }
 
     public static void main (String argv[])
