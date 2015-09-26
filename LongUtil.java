@@ -20,6 +20,16 @@ public class LongUtil
         return (int) w;
     }
 
+    static long uhi (long x)
+    {
+        return x >>> 32;
+    }
+    
+    static long ulo (long x)
+    {
+        return x & 0xFFFFFFFFL;
+    }
+
     public static int x (long w)
     {
         return hi (w) - OFFSET;
