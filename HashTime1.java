@@ -50,6 +50,8 @@ public class HashTime1
             a.add (new LongPoint4 (x, y));
             a.add (new LongPoint5 (x, y));
             a.add (new LongPoint6 (x, y));
+            a.add (new LongPoint60 (x, y));
+            a.add (new LongPoint61 (x, y));
             a.add (new LongPoint7 (x, y));
             a.add (new NullPoint (x, y));
         }
@@ -68,6 +70,8 @@ public class HashTime1
             test (new LongPoint4 (x, y));
             test (new LongPoint5 (x, y));
             test (new LongPoint6 (x, y));
+            test (new LongPoint60 (x, y));
+            test (new LongPoint61 (x, y));
             test (new LongPoint7 (x, y));
             test (new NullPoint (x, y));
         }
