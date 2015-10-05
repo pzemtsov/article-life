@@ -1,9 +1,21 @@
+import static util.LongUtil.*;
+import util.LongUtil;
+import util.Point;
 
-final class LongPoint extends LongUtil
+class LongPoint
 {
+    public static class Factory extends LongPointFactory
+    {
+        @Override
+        public LongPoint create (long v)
+        {
+            return new LongPoint (v);
+        }
+    }
+
     final long v;
     
-    public LongPoint (long v)
+    protected LongPoint (long v)
     {
         this.v = v;
     }
@@ -15,7 +27,7 @@ final class LongPoint extends LongUtil
     
     public Point toPoint ()
     {
-        return toPoint (v);
+        return LongUtil.toPoint (v);
     }
     
     @Override

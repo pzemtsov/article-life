@@ -1,29 +1,19 @@
 import java.util.zip.CRC32;
 
-
-final class LongPoint7 extends LongUtil
+final class LongPoint7 extends LongPoint
 {
-    final long v;
+    public static class Factory extends LongPointFactory
+    {
+        @Override
+        public LongPoint create (long v)
+        {
+            return new LongPoint7 (v);
+        }
+    }
     
     public LongPoint7 (long v)
     {
-        this.v = v;
-    }
-
-    public LongPoint7 (int x, int y)
-    {
-        this.v = fromPoint (x, y);
-    }
-    
-    public Point toPoint ()
-    {
-        return toPoint (v);
-    }
-    
-    @Override
-    public boolean equals (Object v2)
-    {
-        return ((LongPoint7) v2).v == v;
+        super (v);
     }
 
     @Override
@@ -39,11 +29,5 @@ final class LongPoint7 extends LongUtil
         crc.update ((int)(v >>> 48) & 0xFF);
         crc.update ((int)(v >>> 56) & 0xFF);
         return (int) crc.getValue ();
-    }
-    
-    @Override
-    public String toString ()
-    {
-        return toPoint().toString ();
     }
 }

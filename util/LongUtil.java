@@ -1,7 +1,9 @@
+package util;
+
 
 public class LongUtil
 {
-    public static final int OFFSET = 0x80000000;
+    public static final int OFFSET = 0x8000000;
     public static final long DX = 0x100000000L;
     public static final long DY = 1;
 
@@ -20,12 +22,12 @@ public class LongUtil
         return (int) w;
     }
 
-    static long uhi (long x)
+    public static long uhi (long x)
     {
         return x >>> 32;
     }
     
-    static long ulo (long x)
+    public static long ulo (long x)
     {
         return x & 0xFFFFFFFFL;
     }

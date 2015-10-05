@@ -1,38 +1,24 @@
+import static util.LongUtil.*;
 
-final class LongPoint4 extends LongUtil
+final class LongPoint4 extends LongPoint
 {
-    final long v;
-    
+    public static class Factory extends LongPointFactory
+    {
+        @Override
+        public LongPoint create (long v)
+        {
+            return new LongPoint4 (v);
+        }
+    }
+
     public LongPoint4 (long v)
     {
-        this.v = v;
+        super (v);
     }
 
-    public LongPoint4 (int x, int y)
-    {
-        this.v = fromPoint (x, y);
-    }
-    
-    public Point toPoint ()
-    {
-        return toPoint (v);
-    }
-    
-    @Override
-    public boolean equals (Object v2)
-    {
-        return ((LongPoint4) v2).v == v;
-    }
-    
     @Override
     public int hashCode ()
     {
         return hi(v) * 1735499 + lo(v) * 7436369;
-    }
-    
-    @Override
-    public String toString ()
-    {
-        return toPoint().toString ();
     }
 }

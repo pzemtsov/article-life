@@ -1,8 +1,16 @@
 import java.util.Set;
 
-public interface Worker
+import util.Point;
+
+public abstract class Worker
 {
-    void put (int x, int y);
-    Set<Point> get ();
-    void step ();
+    abstract void reset ();
+    abstract void put (int x, int y);
+    abstract Set<Point> get ();
+    abstract void step ();
+    
+    String getName ()
+    {
+        return getClass().getName ();
+    }
 }

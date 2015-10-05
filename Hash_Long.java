@@ -3,12 +3,22 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-final class Hash_Long extends LongUtil implements Worker
+import static util.LongUtil.*;
+import util.Point;
+
+final class Hash_Long extends Worker
 {
     public static final int HASH_SIZE = 8192;
  
     private HashSet<Long> field = new HashSet<Long> (HASH_SIZE);
     private HashMap<Long, Integer> counts = new HashMap<Long, Integer> (HASH_SIZE);
+    
+    @Override
+    public void reset ()
+    {
+        field.clear ();
+        counts.clear ();
+    }
     
     @Override
     public Set<Point> get ()

@@ -3,12 +3,34 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-final class Hash_LongPoint extends LongUtil implements Worker
+import static util.LongUtil.*;
+import util.Point;
+
+final class Hash_LongPoint extends Worker
 {
     public static final int HASH_SIZE = 8192;
 
+    private final LongPointFactory factory;
     private HashSet<LongPoint> field = new HashSet<LongPoint> (HASH_SIZE);
     private HashMap<LongPoint, Integer> counts = new HashMap<LongPoint, Integer> (HASH_SIZE);
+    
+    public Hash_LongPoint (LongPointFactory factory)
+    {
+        this.factory = factory;
+    }
+
+    @Override
+    public String getName ()
+    {
+        return factory.create (0).getClass ().getName ();
+    }
+
+    @Override
+    public void reset ()
+    {
+        field.clear ();
+        counts.clear ();
+    }
     
     @Override
     public Set<Point> get ()
@@ -22,14 +44,14 @@ final class Hash_LongPoint extends LongUtil implements Worker
     
     private void inc (long w)
     {
-        LongPoint key = new LongPoint (w);
+        LongPoint key = factory.create (w);
         Integer c = counts.get (key);
         counts.put (key, c == null ? 1 : c+1);
     }
 
     private void dec (long w)
     {
-        LongPoint key = new LongPoint (w);
+        LongPoint key = factory.create (w);
         int c = counts.get (key)-1;
         if (c != 0) {
             counts.put (key, c);
@@ -69,7 +91,7 @@ final class Hash_LongPoint extends LongUtil implements Worker
     @Override
     public void put (int x, int y)
     {
-        set (new LongPoint (x, y));
+        set (factory.create (x, y));
     }
     
     @Override

@@ -1,38 +1,23 @@
 
-final class LongPoint6 extends LongUtil
+final class LongPoint6 extends LongPoint
 {
-    final long v;
-    
-    public LongPoint6 (long v)
+    public static class Factory extends LongPointFactory
     {
-        this.v = v;
+        @Override
+        public LongPoint create (long v)
+        {
+            return new LongPoint6 (v);
+        }
     }
 
-    public LongPoint6 (int x, int y)
+    public LongPoint6 (long v)
     {
-        this.v = fromPoint (x, y);
+        super (v);
     }
-    
-    public Point toPoint ()
-    {
-        return toPoint (v);
-    }
-    
-    @Override
-    public boolean equals (Object v2)
-    {
-        return ((LongPoint6) v2).v == v;
-    }
-    
+
     @Override
     public int hashCode ()
     {
         return (int) (v % 946840871);
-    }
-    
-    @Override
-    public String toString ()
-    {
-        return toPoint().toString ();
     }
 }

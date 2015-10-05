@@ -1,27 +1,19 @@
+import static util.LongUtil.*;
 
-final class LongPoint60 extends LongUtil
+final class LongPoint60 extends LongPoint
 {
-    final long v;
-    
+    public static class Factory extends LongPointFactory
+    {
+        @Override
+        public LongPoint create (long v)
+        {
+            return new LongPoint60 (v);
+        }
+    }
+
     public LongPoint60 (long v)
     {
-        this.v = v;
-    }
-
-    public LongPoint60 (int x, int y)
-    {
-        this.v = fromPoint (x, y);
-    }
-    
-    public Point toPoint ()
-    {
-        return toPoint (v);
-    }
-    
-    @Override
-    public boolean equals (Object v2)
-    {
-        return ((LongPoint60) v2).v == v;
+        super (v);
     }
 
     static long mult_unsigned_hipart (long x, long y)
@@ -44,20 +36,6 @@ final class LongPoint60 extends LongUtil
     public int hashCode ()
     {
         long div = mult_unsigned_hipart (v, 2614885092524444427L) >> 27;
-        int h = (int) (v - div * 946840871);
-
-        int h0 = (int) (v % 946840871);
-        
-        if (h != h0) {
-            System.out.println (this + ": " + h + " != " + h0);
-        }
-        return h;
-    
-    }
-
-    @Override
-    public String toString ()
-    {
-        return toPoint().toString ();
+        return (int) (v - div * 946840871);
     }
 }

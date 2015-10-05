@@ -3,14 +3,22 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+import util.Point;
 
-final class Hash_Reference implements Worker
+final class Hash_Reference extends Worker
 {
     public static final int HASH_SIZE = 8192;
 
-    private HashSet<Point> field = new HashSet<Point> (HASH_SIZE);
-    private HashMap<Point, Integer> counts = new HashMap<Point, Integer> (HASH_SIZE);
+    HashSet<Point> field = new HashSet<Point> (HASH_SIZE);
+    HashMap<Point, Integer> counts = new HashMap<Point, Integer> (HASH_SIZE);
 
+    @Override
+    public void reset ()
+    {
+        field.clear ();
+        counts.clear ();
+    }
+    
     @Override
     public void put (int x, int y)
     {

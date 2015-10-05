@@ -1,3 +1,4 @@
+
 public class Life
 {
     private static void put (Worker w, String [] p)
@@ -34,18 +35,19 @@ public class Life
         }
     }
     
-    private static void measure (Class<? extends Worker> cw) throws Exception
+    private static void measure (Worker w) throws Exception
     {
         int K = 10000;
-        System.out.printf ("%20s: time for %5d:", cw.getName (), K);
+        System.out.printf ("%20s: time for %5d:", w.getName (), K);
         
         long t = 0;
         for (int n = 0; n < 3; n++) {
-            Worker w = cw.newInstance ();
+            w.reset ();
             put (w, ACORN);
             long t1 = System.currentTimeMillis ();
-            for (int i = 0; i < K; i++)
+            for (int i = 0; i < K; i++) {
                 w.step ();
+            }
             long t2 = System.currentTimeMillis ();
             t = t2 - t1;
             System.out.printf (" %5d", t);
@@ -56,18 +58,20 @@ public class Life
     private static void test (Worker w) throws Exception
     {
         test (new Hash_Reference(), w, 100);
-        measure (w.getClass ());
+        measure (w);
     }
-
+    
     public static void main (String [] args) throws Exception
     {
         test (new Hash_Reference ());
         test (new Hash_Long ());
-        test (new Hash_LongPoint ());
-        test (new Hash_LongPoint3 ());
-        test (new Hash_LongPoint4 ());
-        test (new Hash_LongPoint5 ());
-        test (new Hash_LongPoint6 ());
-        test (new Hash_LongPoint7 ());
+        test (new Hash_LongPoint (new LongPoint.Factory ()));
+        test (new Hash_LongPoint (new LongPoint3.Factory ()));
+        test (new Hash_LongPoint (new LongPoint4.Factory ()));
+        test (new Hash_LongPoint (new LongPoint5.Factory ()));
+        test (new Hash_LongPoint (new LongPoint6.Factory ()));
+        test (new Hash_LongPoint (new LongPoint60.Factory ()));
+        test (new Hash_LongPoint (new LongPoint61.Factory ()));
+        test (new Hash_LongPoint (new LongPoint7.Factory ()));
     }
 }

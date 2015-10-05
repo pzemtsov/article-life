@@ -1,29 +1,20 @@
+import static util.LongUtil.*;
 
-final class LongPoint61 extends LongUtil
+final class LongPoint61 extends LongPoint
 {
-    final long v;
-    
+    public static class Factory extends LongPointFactory
+    {
+        @Override
+        public LongPoint create (long v)
+        {
+            return new LongPoint61 (v);
+        }
+    }
+
     public LongPoint61 (long v)
     {
-        this.v = v;
+        super (v);
     }
-
-    public LongPoint61 (int x, int y)
-    {
-        this.v = fromPoint (x, y);
-    }
-    
-    public Point toPoint ()
-    {
-        return toPoint (v);
-    }
-    
-    @Override
-    public boolean equals (Object v2)
-    {
-        return ((LongPoint61) v2).v == v;
-    }
-
     static long mult_signed_hipart (long x, long y)
     {
         long A = hi (x);
@@ -46,11 +37,5 @@ final class LongPoint61 extends LongUtil
         long sign = v >> 63;
         long div = (mult_signed_hipart (v, 2614885092524444427L) >> 27) - sign;
         return (int) (v - div * 946840871);
-    }
-
-    @Override
-    public String toString ()
-    {
-        return toPoint().toString ();
     }
 }
