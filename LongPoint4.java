@@ -17,6 +17,21 @@ final class LongPoint4 extends LongPoint
     }
 
     @Override
+    public LongPoint[] neighbours ()
+    {
+        return new LongPoint[] {
+                            new LongPoint4 (v-DX-DY),
+                            new LongPoint4 (v-DX),
+                            new LongPoint4 (v-DX+DY),
+                            new LongPoint4 (v-DY),
+                            new LongPoint4 (v+DY),
+                            new LongPoint4 (v+DX-DY),
+                            new LongPoint4 (v+DX),
+                            new LongPoint4 (v+DX+DY)
+        };
+    }
+
+    @Override
     public int hashCode ()
     {
         return hi(v) * 1735499 + lo(v) * 7436369;

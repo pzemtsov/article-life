@@ -1,3 +1,6 @@
+import static util.LongUtil.DX;
+import static util.LongUtil.DY;
+
 
 final class LongPoint6 extends LongPoint
 {
@@ -13,6 +16,21 @@ final class LongPoint6 extends LongPoint
     public LongPoint6 (long v)
     {
         super (v);
+    }
+
+    @Override
+    public LongPoint[] neighbours ()
+    {
+        return new LongPoint[] {
+                            new LongPoint6 (v-DX-DY),
+                            new LongPoint6 (v-DX),
+                            new LongPoint6 (v-DX+DY),
+                            new LongPoint6 (v-DY),
+                            new LongPoint6 (v+DY),
+                            new LongPoint6 (v+DX-DY),
+                            new LongPoint6 (v+DX),
+                            new LongPoint6 (v+DX+DY)
+        };
     }
 
     @Override

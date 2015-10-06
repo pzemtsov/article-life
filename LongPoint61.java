@@ -15,6 +15,22 @@ final class LongPoint61 extends LongPoint
     {
         super (v);
     }
+    
+    @Override
+    public LongPoint[] neighbours ()
+    {
+        return new LongPoint[] {
+                            new LongPoint61 (v-DX-DY),
+                            new LongPoint61 (v-DX),
+                            new LongPoint61 (v-DX+DY),
+                            new LongPoint61 (v-DY),
+                            new LongPoint61 (v+DY),
+                            new LongPoint61 (v+DX-DY),
+                            new LongPoint61 (v+DX),
+                            new LongPoint61 (v+DX+DY)
+        };
+    }
+    
     static long mult_signed_hipart (long x, long y)
     {
         long A = hi (x);

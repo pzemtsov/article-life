@@ -1,2 +1,2 @@
 # article-life
-The source code for the set of articles on Game of Life
+The source code for Game of Life, refactored to use "neighbours()" method in LongPoint

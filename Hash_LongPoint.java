@@ -3,7 +3,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-import static util.LongUtil.*;
 import util.Point;
 
 final class Hash_LongPoint extends Worker
@@ -42,16 +41,14 @@ final class Hash_LongPoint extends Worker
         return result;
     }
     
-    private void inc (long w)
+    private void inc (LongPoint key)
     {
-        LongPoint key = factory.create (w);
         Integer c = counts.get (key);
         counts.put (key, c == null ? 1 : c+1);
     }
 
-    private void dec (long w)
+    private void dec (LongPoint key)
     {
-        LongPoint key = factory.create (w);
         int c = counts.get (key)-1;
         if (c != 0) {
             counts.put (key, c);
@@ -62,29 +59,17 @@ final class Hash_LongPoint extends Worker
     
     void set (LongPoint k)
     {
-        long w = k.v;
-        inc (w-DX-DY);
-        inc (w-DX);
-        inc (w-DX+DY);
-        inc (w-DY);
-        inc (w+DY);
-        inc (w+DX-DY);
-        inc (w+DX);
-        inc (w+DX+DY);
+        for (LongPoint p : k.neighbours ()) {
+            inc (p);
+        }
         field.add (k);
     }
     
     void reset (LongPoint k)
     {
-        long w = k.v;
-        dec (w-DX-DY);
-        dec (w-DX);
-        dec (w-DX+DY);
-        dec (w-DY);
-        dec (w+DY);
-        dec (w+DX-DY);
-        dec (w+DX);
-        dec (w+DX+DY);
+        for (LongPoint p : k.neighbours ()) {
+            dec (p);
+        }
         field.remove (k);
     }
     

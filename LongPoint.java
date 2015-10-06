@@ -41,6 +41,20 @@ class LongPoint
     {
         return hi(v) * 3 + lo(v) * 5;
     }
+
+    public LongPoint[] neighbours ()
+    {
+        return new LongPoint[] {
+                            new LongPoint (v-DX-DY),
+                            new LongPoint (v-DX),
+                            new LongPoint (v-DX+DY),
+                            new LongPoint (v-DY),
+                            new LongPoint (v+DY),
+                            new LongPoint (v+DX-DY),
+                            new LongPoint (v+DX),
+                            new LongPoint (v+DX+DY)
+        };
+    }
     
     @Override
     public String toString ()

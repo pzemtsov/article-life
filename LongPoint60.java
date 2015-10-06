@@ -16,6 +16,21 @@ final class LongPoint60 extends LongPoint
         super (v);
     }
 
+    @Override
+    public LongPoint[] neighbours ()
+    {
+        return new LongPoint[] {
+                            new LongPoint60 (v-DX-DY),
+                            new LongPoint60 (v-DX),
+                            new LongPoint60 (v-DX+DY),
+                            new LongPoint60 (v-DY),
+                            new LongPoint60 (v+DY),
+                            new LongPoint60 (v+DX-DY),
+                            new LongPoint60 (v+DX),
+                            new LongPoint60 (v+DX+DY)
+        };
+    }
+
     static long mult_unsigned_hipart (long x, long y)
     {
         long A = uhi (x);
