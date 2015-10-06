@@ -1,5 +1,7 @@
 import static util.LongUtil.*;
 
+import java.util.HashMap;
+
 final class LongPoint5 extends LongPoint
 {
     public static class Factory extends LongPointFactory
@@ -14,6 +16,32 @@ final class LongPoint5 extends LongPoint
     public LongPoint5 (long v)
     {
         super (v);
+    }
+
+    @Override
+    public void inc (HashMap<LongPoint, Integer> counts)
+    {
+        inc (counts, new LongPoint5 (v-DX-DY));
+        inc (counts, new LongPoint5 (v-DX));
+        inc (counts, new LongPoint5 (v-DX+DY));
+        inc (counts, new LongPoint5 (v-DY));
+        inc (counts, new LongPoint5 (v+DY));
+        inc (counts, new LongPoint5 (v+DX-DY));
+        inc (counts, new LongPoint5 (v+DX));
+        inc (counts, new LongPoint5 (v+DX+DY));
+    }
+
+    @Override
+    public void dec (HashMap<LongPoint, Integer> counts)
+    {
+        dec (counts, new LongPoint5 (v-DX-DY));
+        dec (counts, new LongPoint5 (v-DX));
+        dec (counts, new LongPoint5 (v-DX+DY));
+        dec (counts, new LongPoint5 (v-DY));
+        dec (counts, new LongPoint5 (v+DY));
+        dec (counts, new LongPoint5 (v+DX-DY));
+        dec (counts, new LongPoint5 (v+DX));
+        dec (counts, new LongPoint5 (v+DX+DY));
     }
 
     @Override
