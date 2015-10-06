@@ -1,3 +1,6 @@
+import static util.LongUtil.*;
+
+import java.util.HashMap;
 import java.util.zip.CRC32;
 
 final class LongPoint7 extends LongPoint
@@ -14,6 +17,32 @@ final class LongPoint7 extends LongPoint
     public LongPoint7 (long v)
     {
         super (v);
+    }
+
+    @Override
+    public void inc (HashMap<LongPoint, Integer> counts)
+    {
+        inc (counts, new LongPoint7 (v-DX-DY));
+        inc (counts, new LongPoint7 (v-DX));
+        inc (counts, new LongPoint7 (v-DX+DY));
+        inc (counts, new LongPoint7 (v-DY));
+        inc (counts, new LongPoint7 (v+DY));
+        inc (counts, new LongPoint7 (v+DX-DY));
+        inc (counts, new LongPoint7 (v+DX));
+        inc (counts, new LongPoint7 (v+DX+DY));
+    }
+
+    @Override
+    public void dec (HashMap<LongPoint, Integer> counts)
+    {
+        dec (counts, new LongPoint7 (v-DX-DY));
+        dec (counts, new LongPoint7 (v-DX));
+        dec (counts, new LongPoint7 (v-DX+DY));
+        dec (counts, new LongPoint7 (v-DY));
+        dec (counts, new LongPoint7 (v+DY));
+        dec (counts, new LongPoint7 (v+DX-DY));
+        dec (counts, new LongPoint7 (v+DX));
+        dec (counts, new LongPoint7 (v+DX+DY));
     }
 
     @Override
