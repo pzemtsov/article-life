@@ -1,18 +1,19 @@
-import static util.LongUtil.*;
+import static util.LongUtil.fromPoint;
 import util.LongUtil;
 import util.Point;
 
-class LongPoint
+public class LongPoint
 {
-    public static class Factory extends LongPointFactory
+    public static abstract class Factory
     {
-        @Override
-        public LongPoint create (long v)
+        public abstract LongPoint create (long v);
+
+        public LongPoint create (int x, int y)
         {
-            return new LongPoint (v);
+            return create (fromPoint (x, y));
         }
     }
-
+    
     final long v;
     
     protected LongPoint (long v)
@@ -34,12 +35,6 @@ class LongPoint
     public boolean equals (Object v2)
     {
         return ((LongPoint) v2).v == v;
-    }
-    
-    @Override
-    public int hashCode ()
-    {
-        return hi(v) * 3 + lo(v) * 5;
     }
     
     @Override

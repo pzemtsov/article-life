@@ -1,26 +1,17 @@
-final class NullPoint extends LongUtil
+final class NullPoint extends LongPoint
 {
-    final long v;
-    
-    public NullPoint (long v)
+    public static class Factory extends LongPoint.Factory
     {
-        this.v = v;
+        @Override
+        public NullPoint create (long v)
+        {
+            return new NullPoint (v);
+        }
     }
 
-    public NullPoint (int x, int y)
+    public NullPoint (long v)
     {
-        this.v = fromPoint (x, y);
-    }
-    
-    public Point toPoint ()
-    {
-        return toPoint (v);
-    }
-    
-    @Override
-    public boolean equals (Object v2)
-    {
-        return ((NullPoint) v2).v == v;
+        super (v);
     }
 
     @Override

@@ -65,7 +65,7 @@ public class Life
     {
         test (new Hash_Reference ());
         test (new Hash_Long ());
-        test (new Hash_LongPoint (new LongPoint.Factory ()));
+        test (new Hash_LongPoint (new LongPoint1.Factory ()));
         test (new Hash_LongPoint (new LongPoint3.Factory ()));
         test (new Hash_LongPoint (new LongPoint4.Factory ()));
         test (new Hash_LongPoint (new LongPoint5.Factory ()));

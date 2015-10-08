@@ -2,7 +2,7 @@ import java.util.zip.CRC32;
 
 final class LongPoint7 extends LongPoint
 {
-    public static class Factory extends LongPointFactory
+    public static class Factory extends LongPoint.Factory
     {
         @Override
         public LongPoint create (long v)
@@ -11,7 +11,7 @@ final class LongPoint7 extends LongPoint
         }
     }
     
-    public LongPoint7 (long v)
+    private LongPoint7 (long v)
     {
         super (v);
     }

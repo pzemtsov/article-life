@@ -2,19 +2,20 @@ import static util.LongUtil.*;
 
 final class LongPoint61 extends LongPoint
 {
-    public static class Factory extends LongPointFactory
+    public static class Factory extends LongPoint.Factory
     {
         @Override
-        public LongPoint create (long v)
+        public LongPoint61 create (long v)
         {
             return new LongPoint61 (v);
         }
     }
 
-    public LongPoint61 (long v)
+    private LongPoint61 (long v)
     {
         super (v);
     }
+    
     static long mult_signed_hipart (long x, long y)
     {
         long A = hi (x);

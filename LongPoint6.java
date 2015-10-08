@@ -1,16 +1,16 @@
 
 final class LongPoint6 extends LongPoint
 {
-    public static class Factory extends LongPointFactory
+    public static class Factory extends LongPoint.Factory
     {
         @Override
-        public LongPoint create (long v)
+        public LongPoint6 create (long v)
         {
             return new LongPoint6 (v);
         }
     }
 
-    public LongPoint6 (long v)
+    private LongPoint6 (long v)
     {
         super (v);
     }

@@ -10,11 +10,11 @@ final class Hash_LongPoint extends Worker
 {
     public static final int HASH_SIZE = 8192;
 
-    private final LongPointFactory factory;
+    private final LongPoint.Factory factory;
     private HashSet<LongPoint> field = new HashSet<LongPoint> (HASH_SIZE);
     private HashMap<LongPoint, Integer> counts = new HashMap<LongPoint, Integer> (HASH_SIZE);
     
-    public Hash_LongPoint (LongPointFactory factory)
+    public Hash_LongPoint (LongPoint.Factory factory)
     {
         this.factory = factory;
     }
