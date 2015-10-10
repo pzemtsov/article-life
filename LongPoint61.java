@@ -2,14 +2,14 @@ import static util.LongUtil.*;
 
 final class LongPoint61 extends LongPoint
 {
-    public static class Factory extends LongPoint.Factory
+    public static final LongPoint.Factory factory = new LongPoint.Factory ()
     {
         @Override
         public LongPoint61 create (long v)
         {
             return new LongPoint61 (v);
         }
-    }
+    };
 
     private LongPoint61 (long v)
     {

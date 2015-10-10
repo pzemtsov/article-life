@@ -1,13 +1,13 @@
 final class NullPoint extends LongPoint
 {
-    public static class Factory extends LongPoint.Factory
+    public static final LongPoint.Factory factory = new LongPoint.Factory ()
     {
         @Override
         public NullPoint create (long v)
         {
             return new NullPoint (v);
         }
-    }
+    };
 
     public NullPoint (long v)
     {

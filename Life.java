@@ -65,13 +65,13 @@ public class Life
     {
         test (new Hash_Reference ());
         test (new Hash_Long ());
-        test (new Hash_LongPoint (new LongPoint1.Factory ()));
-        test (new Hash_LongPoint (new LongPoint3.Factory ()));
-        test (new Hash_LongPoint (new LongPoint4.Factory ()));
-        test (new Hash_LongPoint (new LongPoint5.Factory ()));
-        test (new Hash_LongPoint (new LongPoint6.Factory ()));
-        test (new Hash_LongPoint (new LongPoint60.Factory ()));
-        test (new Hash_LongPoint (new LongPoint61.Factory ()));
-        test (new Hash_LongPoint (new LongPoint7.Factory ()));
+        test (new Hash_LongPoint (LongPoint1.factory));
+        test (new Hash_LongPoint (LongPoint3.factory));
+        test (new Hash_LongPoint (LongPoint4.factory));
+        test (new Hash_LongPoint (LongPoint5.factory));
+        test (new Hash_LongPoint (LongPoint6.factory));
+        test (new Hash_LongPoint (LongPoint60.factory));
+        test (new Hash_LongPoint (LongPoint61.factory));
+        test (new Hash_LongPoint (LongPoint7.factory));
     }
 }

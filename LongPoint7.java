@@ -2,14 +2,14 @@ import java.util.zip.CRC32;
 
 final class LongPoint7 extends LongPoint
 {
-    public static class Factory extends LongPoint.Factory
+    public static final LongPoint.Factory factory = new LongPoint.Factory ()
     {
         @Override
         public LongPoint create (long v)
         {
             return new LongPoint7 (v);
         }
-    }
+    };
     
     private LongPoint7 (long v)
     {

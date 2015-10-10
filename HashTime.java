@@ -48,15 +48,15 @@ public class HashTime
         for (int i = 0; i < 100000; i++) {
             a.add (new Point (x, y));
             a.add (LongUtil.fromPoint (x, y));
-            a.add (new LongPoint1.Factory ().create (x, y));
-            a.add (new LongPoint3.Factory ().create (x, y));
-            a.add (new LongPoint4.Factory ().create (x, y));
-            a.add (new LongPoint5.Factory ().create (x, y));
-            a.add (new LongPoint6.Factory ().create (x, y));
-            a.add (new LongPoint60.Factory ().create (x, y));
-            a.add (new LongPoint61.Factory ().create (x, y));
-            a.add (new LongPoint7.Factory ().create (x, y));
-            a.add (new NullPoint.Factory ().create (x, y));
+            a.add (LongPoint1.factory.create (x, y));
+            a.add (LongPoint3.factory.create (x, y));
+            a.add (LongPoint4.factory.create (x, y));
+            a.add (LongPoint5.factory.create (x, y));
+            a.add (LongPoint6.factory.create (x, y));
+            a.add (LongPoint60.factory.create (x, y));
+            a.add (LongPoint61.factory.create (x, y));
+            a.add (LongPoint7.factory.create (x, y));
+            a.add (NullPoint.factory.create (x, y));
         }
 
         for (int j = 0; j < 100; j++) {
@@ -68,15 +68,15 @@ public class HashTime
         for (int i = 0; i < 2; i++) {
             test (new Point (x, y));
             test (LongUtil.fromPoint (x, y));
-            test (new LongPoint1.Factory ().create (x, y));
-            test (new LongPoint3.Factory ().create (x, y));
-            test (new LongPoint4.Factory ().create (x, y));
-            test (new LongPoint5.Factory ().create (x, y));
-            test (new LongPoint6.Factory ().create (x, y));
-            test (new LongPoint60.Factory ().create (x, y));
-            test (new LongPoint61.Factory ().create (x, y));
-            test (new LongPoint7.Factory ().create (x, y));
-            test (new NullPoint.Factory ().create (x, y));
+            test (LongPoint1.factory.create (x, y));
+            test (LongPoint3.factory.create (x, y));
+            test (LongPoint4.factory.create (x, y));
+            test (LongPoint5.factory.create (x, y));
+            test (LongPoint6.factory.create (x, y));
+            test (LongPoint60.factory.create (x, y));
+            test (LongPoint61.factory.create (x, y));
+            test (LongPoint7.factory.create (x, y));
+            test (NullPoint.factory.create (x, y));
         }
     }
 }
