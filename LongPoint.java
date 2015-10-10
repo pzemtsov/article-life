@@ -2,7 +2,7 @@ import static util.LongUtil.fromPoint;
 import util.LongUtil;
 import util.Point;
 
-public class LongPoint
+public abstract class LongPoint
 {
     public static abstract class Factory
     {
