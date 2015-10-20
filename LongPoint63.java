@@ -1,41 +1,38 @@
 import static util.LongUtil.*;
 
-final class LongPoint60 extends LongPoint
+final class LongPoint63 extends LongPoint
 {
     public static final LongPoint.Factory factory = new LongPoint.Factory ()
     {
         @Override
-        public LongPoint60 create (long v)
+        public LongPoint63 create (long v)
         {
-            return new LongPoint60 (v);
+            return new LongPoint63 (v);
         }
     };
-
-    private LongPoint60 (long v)
+    
+    private LongPoint63 (long v)
     {
         super (v);
     }
 
-    static long mult_unsigned_hipart (long x, long y)
+    static long mult_unsigned_hipart_special (long x, long y)
     {
         long A = uhi (x);
         long B = ulo (x);
         long C = uhi (y);
         long D = ulo (y);
-
+        
         long AC = A * C;
-        long AD = A * D;
-        long BC = B * C;
         long BD = B * D;
-
-        long ADl_BCl_BDh = ulo (AD) + ulo (BC) + uhi (BD);
-        return AC + uhi (AD) + uhi (BC) + uhi (ADl_BCl_BDh);
+        long AD_BC = (A+B) * (C+D) - (AC + BD);
+        return AC + uhi (AD_BC + uhi (BD));
     }
 
     @Override
     public int hashCode ()
     {
-        long div = mult_unsigned_hipart (v, 2614885092524444427L) >>> 27;
+        long div = mult_unsigned_hipart_special (v, 2614885092524444427L) >>> 27;
         return (int) (v - div * 946840871);
     }
 }
