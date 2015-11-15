@@ -44,7 +44,7 @@ public class HashTime
         int y = -295;
         ArrayList<Object> a = new ArrayList<Object> ();
         int sum = 0;
-
+        
         for (int i = 0; i < 100000; i++) {
             a.add (new Point (x, y));
             a.add (LongUtil.fromPoint (x, y));
@@ -54,6 +54,9 @@ public class HashTime
             a.add (LongPoint5.factory.create (x, y));
             a.add (LongPoint6.factory.create (x, y));
             a.add (LongPoint7.factory.create (x, y));
+            a.add (LongPoint71.factory.create (x, y));
+            a.add (LongPoint72.factory.create (x, y));
+            a.add (LongPoint73.factory.create (x, y));
             a.add (NullPoint.factory.create (x, y));
         }
 
@@ -72,7 +75,9 @@ public class HashTime
             test (LongPoint5.factory.create (x, y));
             test (LongPoint6.factory.create (x, y));
             test (LongPoint7.factory.create (x, y));
-            test (NullPoint.factory.create (x, y));
+            test (LongPoint71.factory.create (x, y));
+            test (LongPoint72.factory.create (x, y));
+            test (LongPoint73.factory.create (x, y));
         }
     }
 }
