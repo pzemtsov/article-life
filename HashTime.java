@@ -59,6 +59,9 @@ public class HashTime
             a.add (LongPoint73.factory.create (x, y));
 //            a.add (LongPoint74.factory.create (x, y));
             a.add (LongPoint75.factory.create (x, y));
+            a.add (LongPoint76.factory.create (x, y));
+            a.add (LongPoint77.factory.create (x, y));
+            a.add (LongPoint78.factory.create (x, y));
             a.add (NullPoint.factory.create (x, y));
         }
 
@@ -82,6 +85,9 @@ public class HashTime
             test (LongPoint73.factory.create (x, y));
 //            test (LongPoint74.factory.create (x, y));
             test (LongPoint75.factory.create (x, y));
+            test (LongPoint76.factory.create (x, y));
+            test (LongPoint77.factory.create (x, y));
+            test (LongPoint78.factory.create (x, y));
         }
     }
 }
