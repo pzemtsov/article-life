@@ -64,7 +64,6 @@ public class Life
     public static void main (String [] args) throws Exception
     {
         test (new Hash_Reference ());
-        test (new Hash_Long ());
         test (new Hash_LongPoint (LongPoint1.factory));
         test (new Hash_LongPoint (LongPoint3.factory));
         test (new Hash_LongPoint (LongPoint4.factory));
