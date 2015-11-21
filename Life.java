@@ -70,13 +70,7 @@ public class Life
         test (new Hash_LongPoint (LongPoint4.factory));
         test (new Hash_LongPoint (LongPoint5.factory));
         test (new Hash_LongPoint (LongPoint6.factory));
-        test (new Hash_LongPoint (LongPoint7.factory));
-        test (new Hash_LongPoint (LongPoint71.factory));
-        test (new Hash_LongPoint (LongPoint72.factory));
-        test (new Hash_LongPoint (LongPoint73.factory));
-        test (new Hash_LongPoint (LongPoint74.factory));
         test (new Hash_LongPoint (LongPoint75.factory));
-        test (new Hash_LongPoint (LongPoint76.factory));
         test (new Hash_LongPoint (LongPoint77.factory));
     }
 }
