@@ -80,6 +80,7 @@ public class Life
 //      test (new Hash_LongPoint (LongPoint6.factory));
 //      test (new Hash1 (LongPoint6.factory));
 //      test (new Hash2 (LongPoint6.factory));
-        test (new Hash3 (LongPoint6.factory));
+//      test (new Hash3 (LongPoint6.factory));
+        test (new Hash4 (LongPoint6.factory));
     }
 }
