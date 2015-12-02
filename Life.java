@@ -1,3 +1,8 @@
+import java.util.HashSet;
+import java.util.Set;
+
+import util.Point;
+
 
 public class Life
 {
@@ -24,10 +29,18 @@ public class Life
         put (w, ACORN);
         
         for (int i = 0; i < K; i++) {
-            if (! w0.get().equals (w.get())) {
-                System.out.println ("Not equats " + w.getClass () + " at " + i);
-                System.out.println ("w0 = " + w0.get());
-                System.out.println ("w  = " + w.get());
+            Set<Point> set0 = w0.get ();
+            Set<Point> set1 = w.get ();
+            if (! set0.equals (set1)) {
+                System.out.println ("Not equals " + w.getClass () + " at " + i);
+                System.out.println ("w0 = " + set0);
+                System.out.println ("w  = " + set1);
+                HashSet<Point> s0 = new HashSet<Point>(set0);
+                HashSet<Point> s1 = new HashSet<Point>(set1);
+                s0.removeAll (set1);
+                s1.removeAll (set0);
+                System.out.println ("w0 - w = " + s0);
+                System.out.println ("w - w0 = " + s1);
                 System.exit (0);
             }
             w0.step ();
@@ -38,7 +51,7 @@ public class Life
     private static void measure (Worker w) throws Exception
     {
         int K = 10000;
-        System.out.printf ("%20s: time for %5d:", w.getName (), K);
+        System.out.printf ("%30s: time for %5d:", w.getName (), K);
         
         long t = 0;
         for (int n = 0; n < 3; n++) {
@@ -63,13 +76,8 @@ public class Life
     
     public static void main (String [] args) throws Exception
     {
-        test (new Hash_Reference ());
-        test (new Hash_LongPoint (LongPoint1.factory));
-        test (new Hash_LongPoint (LongPoint3.factory));
-        test (new Hash_LongPoint (LongPoint4.factory));
-        test (new Hash_LongPoint (LongPoint5.factory));
-        test (new Hash_LongPoint (LongPoint6.factory));
-        test (new Hash_LongPoint (LongPoint75.factory));
-        test (new Hash_LongPoint (LongPoint77.factory));
+//      test (new Hash_Reference ());
+//      test (new Hash_LongPoint (LongPoint6.factory));
+        test (new Hash1 (LongPoint6.factory));
     }
 }
