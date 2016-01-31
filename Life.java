@@ -22,6 +22,19 @@ public class Life
                     ":::#:::",
                     ":#"
     };
+
+    private static final String [] GUN = new String [] {
+          "                        #             ",
+          "                      # #             ",
+          "            ##      ##            ##",
+          "           #   #    ##            ##",
+          "##        #     #   ##",
+          "##        #   # ##    # #",
+          "          #     #       #",
+          "           #   #",
+          "            ##"
+    };
+    
     
     private static void test (Worker w0, Worker w, int K)
     {
@@ -74,16 +87,58 @@ public class Life
         measure (w);
     }
     
-    public static void main (String [] args) throws Exception
+    private static void test_gun (Worker w) throws Exception
     {
-//      test (new Hash_Reference ());
-//      test (new Hash_LongPoint (LongPoint6.factory));
-//      test (new Hash1 (LongPoint6.factory));
-//      test (new Hash2 (LongPoint6.factory));
-//      test (new Hash3 (LongPoint6.factory));
-//      test (new Hash4 (LongPoint6.factory));
-//      test (new Hash5 (LongPoint6.factory));
-//      test (new Hash6 (LongPoint6.factory));
+        int N = 10000000;
+        int K = 10000;
+        put (w, GUN);
+        long total = 0;
+        for (int step = 0; step < N;) {
+            long t1 = System.currentTimeMillis ();
+            for (int i = 0; i < K; i++, step ++) {
+                w.step ();
+            }
+            long t2 = System.currentTimeMillis ();
+            long t = t2 - t1;
+            total += t;
+            int size = w.size ();
+            System.out.println (step + ": " + t + "; total: " + total + "; size=" + size + "; ms/elem=" + (double) t / size + "; Mem: " + memory ());
+        }
+    }
+
+    static double memory ()
+    {
+        System.gc ();
+        long mem = Runtime.getRuntime ().totalMemory () - Runtime.getRuntime ().freeMemory ();
+        return mem / (1024 * 1024.0);
+    }
+    
+    private static class Hasher6 extends Hasher
+    {
+
+        @Override
+        public int hashCode (long key)
+        {
+            return (int) (key % 946840871);
+        }
+    }
+    
+    public static void main (String [] args) throws Exception
+    {        
+        test (new Hash_Reference ());
+        test (new Hash_LongPoint (LongPoint6.factory));
+        test (new Hash1 (LongPoint6.factory));
+        test (new Hash2 (LongPoint6.factory));
+        test (new Hash3 (LongPoint6.factory));
+        test (new Hash4 (LongPoint6.factory));
+        test (new Hash5 (LongPoint6.factory));
+        test (new Hash6 (LongPoint6.factory));
         test (new Hash7 (LongPoint6.factory));
+        test (new Hash8 (LongPoint6.factory));
+        test (new Hash_HomeMade (new Hasher6()));
+        test (new Hash_HomeMade2 (new Hasher6()));
+        test (new Hash_HomeMade3 (new Hasher6()));
+        test_gun (new Hash_Additive ());
+        test_gun (new Hash_Additive3 ());
     }
 }
