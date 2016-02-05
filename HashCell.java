@@ -13,7 +13,6 @@ public final class HashCell
     HashCell prev;
     HashCell next_action;
     static int count = 0;
-    int instance;
     
     public HashCell (long position, int hash, int neighbours, boolean live)
     {
@@ -21,7 +20,6 @@ public final class HashCell
         this.hash = hash;
         this.neighbours = neighbours;
         this.live = live;
-        instance = ++ count;
     }
 
     public HashCell (long position, int hash, int neighbours)
