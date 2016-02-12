@@ -1,8 +1,6 @@
-import static util.LongUtil.fromPoint;
 import static util.LongUtil.hi;
 import static util.LongUtil.lo;
 import static util.LongUtil.w;
-import util.LongUtil;
 import util.Point;
 
 
@@ -20,15 +18,18 @@ public final class AdditiveCell
     public static final int B = 7436369;
     public static int Ar = 1651619427;
     public static int Br = 2058014897;
-
-    private static long tohash (long key)
+    public static long MASK = 0x7FFFFFFF7FFFFFFFL;
+    
+    public static long encode (int x, int y)
     {
-        return w (hi (key) * A, lo (key) * B);
+        return w (x * A, y * B) & MASK;
     }
     
-    private static long fromhash (long hash)
+    public static Point decode (long hash)
     {
-        return w (hi (hash) * Ar, lo(hash) * Br);
+        int x = (hi (hash) * Ar) << 1 >> 1;
+        int y = (lo (hash) * Br) << 1 >> 1;
+        return new Point (x, y);
     }
     
     public AdditiveCell (long pos, int neighbours, boolean live)
@@ -45,12 +46,12 @@ public final class AdditiveCell
 
     public AdditiveCell (int x, int y)
     {
-        this (tohash (fromPoint (x, y)), 0, true);
+        this (encode (x, y), 0, true);
     }
     
     public Point toPoint ()
     {
-        return LongUtil.toPoint (fromhash (pos));
+        return decode (pos);
     }
     
     public void inc ()

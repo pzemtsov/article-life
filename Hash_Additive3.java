@@ -13,8 +13,11 @@ final class Hash_Additive3 extends Worker
 
     private AdditiveCell[] table;
     AdditiveCell full_list;
+    public static long MASK = AdditiveCell.MASK;
     public static long A = w (AdditiveCell.A, 0);
     public static long B = AdditiveCell.B;
+    public static long AM = w (-AdditiveCell.A, 0) & MASK;
+    public static long BM = w (0, -AdditiveCell.B) & MASK;
     
     private final String name;
     
@@ -112,6 +115,7 @@ final class Hash_Additive3 extends Worker
     
     private void inc (long w)
     {
+        w &= MASK;
         AdditiveCell c = get (w);
         if (c == null) {
             put (new AdditiveCell (w, 1));
@@ -122,6 +126,7 @@ final class Hash_Additive3 extends Worker
 
     private void dec (long w)
     {
+        w &= MASK;
         AdditiveCell c = get (w);
         if (! c.dec () && ! c.live) {
             remove (c);
@@ -131,12 +136,12 @@ final class Hash_Additive3 extends Worker
     void set (AdditiveCell c)
     {
         long w = c.pos;
-        inc (w-A-B);
-        inc (w-A);
-        inc (w-A+B);
-        inc (w-B);
+        inc (w+AM+BM);
+        inc (w+AM);
+        inc (w+AM+B);
+        inc (w+BM);
         inc (w+B);
-        inc (w+A-B);
+        inc (w+A+BM);
         inc (w+A);
         inc (w+A+B);
         c.set ();
@@ -145,12 +150,12 @@ final class Hash_Additive3 extends Worker
     void reset (AdditiveCell c)
     {
         long w = c.pos;
-        dec (w-A-B);
-        dec (w-A);
-        dec (w-A+B);
-        dec (w-B);
+        dec (w+AM+BM);
+        dec (w+AM);
+        dec (w+AM+B);
+        dec (w+BM);
         dec (w+B);
-        dec (w+A-B);
+        dec (w+A+BM);
         dec (w+A);
         dec (w+A+B);
         if (c.neighbours == 0) {
@@ -163,7 +168,7 @@ final class Hash_Additive3 extends Worker
     @Override
     public void put (int x, int y)
     {
-        long w = new AdditiveCell (x, y).pos;
+        long w = AdditiveCell.encode (x, y);
         AdditiveCell c = get (w);
         if (c == null) {
             put (c = new AdditiveCell (w, 0, true));
