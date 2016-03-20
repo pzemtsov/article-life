@@ -1,2 +1,1 @@
-# article-life
-The source code for the set of articles on Game of Life
+The C++ version of the Hash-based life implementation
