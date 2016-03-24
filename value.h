@@ -8,10 +8,10 @@ public:
     int count;
     bool live;
 
-    Value(int value, bool present) : count(count), live(present)
+    Value(int value, bool present) : count(value), live(present)
     {}
 
-    Value(int value) : count(count), live(false)
+    Value(int value) : count(value), live(false)
     {}
 
     Value() : count(0), live(false)
@@ -39,4 +39,3 @@ public:
 };
 
 #endif // _VALUE_H
-
