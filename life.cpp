@@ -176,7 +176,7 @@ void test(Worker &w0, Worker &w, int K)
 void measure (Worker &w)
 {
     int K = 10000;
-    
+
     printf("%30s: time for %5d:", typeid (w).name(), K);
 
     uint64_t t = 0;
@@ -189,7 +189,7 @@ void measure (Worker &w)
         }
         uint64_t t2 = currentTimeMillis();
         t = t2 - t1;
-        printf(" %5d", t);
+        printf(" %5lu", t);
     }
     printf(": %6.1f frames/sec\n", K * 1000.0 / t);
 }
@@ -273,7 +273,7 @@ void test_gun(Worker &w)
         uint64_t t = t2 - t1;
         total += t;
         size_t size = w.size();
-        printf("%8d: %lld; total: %lld; size=%d; ms/elem=%f\n",
+        printf("%8d: %lu; total: %lu; size=%lu; ms/elem=%f\n",
             step, t, total, size, (double)t / size);
         fflush(stdout);
     }
