@@ -31,13 +31,13 @@ public:
     Hash_Reference(size_t hash_size = 8192) : field(hash_size), counts(hash_size)
     {}
 
-    void reset()
+    inline void reset()
     {
         field.clear();
         counts.clear();
     }
 
-    void put(int x, int y)
+    inline void put(int x, int y)
     {
         set(Point(x, y));
     }
@@ -48,29 +48,36 @@ public:
     }
 
 private:
-    void inc(Point w)
+    void inc(const Point& w)
     {
         ++ counts[w];
     }
 
-    void dec(Point w)
+    void dec(const Point& w)
     {
         if (!--counts[w]) {
             counts.erase(w);
         }
     }
 
-    void set(Point w)
+    void set(Point&& w) {
+      for (const Point& p : w.neighbours()) {
+          inc(p);
+      }
+      field.insert(w);
+    }
+
+    void set(const Point& w)
     {
-        for (Point p : w.neighbours()) {
+        for (const Point& p : w.neighbours()) {
             inc(p);
         }
         field.insert(w);
     }
 
-    void reset(Point w)
+    void reset(const Point& w)
     {
-        for (Point p : w.neighbours()) {
+        for (const Point& p : w.neighbours()) {
             dec(p);
         }
         field.erase(w);
@@ -82,21 +89,21 @@ public:
     {
         std::vector<Point> toReset;
         std::vector<Point> toSet;
-        for (Point w : field) {
+        for (const Point& w : field) {
             auto it = counts.find(w);
             if (it == counts.end() || it->second < 2 || it->second > 3) {
                 toReset.push_back(w);
             }
         }
-        for (auto w : counts) {
+        for (const auto& w : counts) {
             if (w.second == 3 && field.find(w.first) == field.end()) {
                 toSet.push_back(w.first);
             }
         }
-        for (Point w : toSet) {
+        for (const Point& w : toSet) {
             set(w);
         }
-        for (Point w : toReset) {
+        for (const Point& w : toReset) {
             reset(w);
         }
     }
